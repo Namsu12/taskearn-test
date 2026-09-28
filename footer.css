@@ -1,0 +1,52 @@
+/* ========================================
+   SITE-WIDE FOOTER - CSS
+   ======================================== */
+
+.site-footer {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 28px 20px 20px;
+    border-top: 1px solid #1e2537;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 18px;
+    margin-bottom: 16px;
+}
+
+.footer-links a {
+    color: #8892b0;
+    text-decoration: none;
+    font-size: 12.5px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00d4ff;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.footer-socials a {
+    color: #4a5670;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.footer-socials a:hover {
+    color: #00d4ff;
+}
+
+.footer-copyright {
+    color: #4a5670;
+    font-size: 11px;
+}

@@ -1,0 +1,89 @@
+/* ========================================
+   WELCOME BANNER - CSS
+   Rotating message stack, no close button
+   ======================================== */
+
+.welcome-banner {
+    display: none;
+    align-items: center;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    min-height: 20px;
+}
+
+.welcome-banner-text {
+    display: block;
+    width: 100%;
+    font-size: 13.5px;
+    line-height: 1.4;
+}
+
+.welcome-banner-text.slide-out {
+    animation: bannerSlideOut 0.35s ease forwards;
+}
+
+.welcome-banner-text.slide-in {
+    animation: bannerSlideIn 0.35s ease forwards;
+}
+
+@keyframes bannerSlideOut {
+    from { transform: translateY(0); opacity: 1; }
+    to   { transform: translateY(-100%); opacity: 0; }
+}
+
+@keyframes bannerSlideIn {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ========================================
+   RECHARGE ACTIVITY TICKER
+   Separate element, own animation — same gradient pill style as the
+   welcome banner above, but not merged into the same rotation/content.
+   ======================================== */
+.recharge-activity-bar {
+    margin: 16px 0;
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recharge-activity-text {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+@keyframes rechargeSlideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.recharge-activity-text.swipe {
+    animation: rechargeSlideUp 0.4s ease;
+}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Social Tasks - Task Earn</title>
+    <!-- Preconnects-->
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+    <link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- Descriptions -->
+    <meta name="author" content="TaskEarn">
+    <meta name="description" content="Complete available tasks on Task Earn to earn additional rewards, track your task progress, and view your completed task activities.">
+    
+    <!--SEO instruction-->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Icons, stylesheets, fonts/libraries-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="tasks.css" />
+    
+    <!-- Mainfest -->
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Misc-Theme color -->
+    <meta name="theme-color" content="#0b0e1a">
+    
+    <!-- Open Graphs -->
+    <meta property="og:title" content="Tasks - Task Earn">
+    <meta property="og:description" content="Complete available tasks on Task Earn to earn additional rewards, track your task progress, and view your completed task activities.">
+    <meta property="og:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+    <meta property="og:url" content="https://taskearn.pages.dev/tasks.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twiter(x) Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tasks - Task Earn">
+    <meta name="twitter:description" content="Complete available tasks on Task Earn to earn additional rewards, track your task progress, and view your completed task activities.">
+    <meta name="twitter:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+    
+</head>
+<body>
+    <div class="plans-container">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <span class="balance"><i class="fas fa-wallet"></i> <span id="topBalance">0</span></span>
+                <img src="https://ui-avatars.com/api/?name=User&background=00d4ff&color=fff&size=36" alt="User" id="userAvatarImg" />
+            </div>
+        </header>
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <h1><i class="fas fa-chart-line"></i> Social Tasks</h1>
+            <p>Complete a task to earn. You can also add your task as advertiser </p>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="disclaimer-banner">
+            <i class="fas fa-triangle-exclamation"></i>
+            <p>Deposit first before completing task. You must complete a task as described to recieve your task rewards/income. Task earnings are withdrawable from the task wallet dashboard.</p>
+        </div>
+
+        <!-- MAIN TABS: Tasks / Income -->
+        <div class="tabs-wrapper">
+            <div class="tabs-toggle">
+                <button class="tab-btn active" data-tab="task">Tasks <i class="fa fa-money-bill-wave"></i></button>
+                <button class="tab-btn" data-tab="income">Income <i class="fa fa-wallet"></i></button>
+                <button class="tab-btn admin-only" data-tab="admin" id="adminTabBtn">Admin <i class="fa fa-user-shield"></i></button>
+            </div>
+
+            <!-- ============ TASK TAB ============ -->
+            <div class="tab-content active" id="task-content">
+
+                <!-- SUB TABS: Available / Advertiser -->
+                <div class="subtabs-toggle">
+                    <button class="subtab-btn active" data-subtab="available">Available</button>
+                    <button class="subtab-btn" data-subtab="advertiser">Advertiser</button>
+                </div>
+
+                <!-- AVAILABLE TASKS -->
+                <div class="subtab-content active" id="available-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-box"></i> Available Tasks</h2>
+                        <div id="tasksList" class="task-list">
+                            <div class="empty-state">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Loading tasks...
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ADVERTISER: CREATE A TASK -->
+                <div class="subtab-content" id="advertiser-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-bullhorn"></i> Post a Task</h2>
+                        <p class="section-subtext">
+                            Your task will run until every slot is filled, then it closes automatically.
+                            Total cost is deducted from your main wallet up front.
+                        </p>
+
+                        <form id="advertiserForm" class="advertiser-form">
+                            <label for="advTitle">Task title</label>
+                            <input type="text" id="advTitle" placeholder="e.g. Follow our Instagram page" required maxlength="80" />
+
+                            <label for="advDescription">Description</label>
+                            <textarea id="advDescription" placeholder="Tell workers exactly what to do to qualify for payment" required maxlength="400" rows="3"></textarea>
+
+                            <label for="advLink">Task link</label>
+                            <input type="url" id="advLink" placeholder="https://..." required />
+
+                            <div class="fixed-price-row">
+                                <span><i class="fas fa-lock"></i> You pay per person</span>
+                                <strong id="advFixedReward">0</strong>
+                            </div>
+                            <p class="section-subtext" style="margin:-8px 0 0; display:none;">Workers will earn <strong id="advWorkerEarnInfo">0</strong> each for completing this task.</p>
+
+                            <label for="advSlots">Number of people</label>
+                            <input type="number" id="advSlots" min="1" step="1" placeholder="0" required />
+
+                            <div class="cost-summary">
+                                <span>Total cost</span>
+                                <strong id="advCostPreview">0</strong>
+                            </div>
+
+                            <button type="submit" class="btn-primary" id="advSubmitBtn">
+                                <i class="fas fa-paper-plane"></i> Post Task
+                            </button>
+
+                            <p id="advMessage" class="form-message"></p>
+                        </form>
+
+                        <div class="divider"></div>
+
+                        <h3 class="section-title small"><i class="fas fa-list"></i> Your Posted Tasks</h3>
+                        <div id="myTasksList" class="task-list">
+                            <div class="empty-state">No tasks posted yet.</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- ============ INCOME TAB ============ -->
+            <div class="tab-content" id="income-content">
+                <section class="tasks-section">
+
+                    <!-- TASK WALLET CARD -->
+                    <div class="wallet-card">
+                        <div class="wallet-card-label"><i class="fas fa-coins"></i> Task Wallet</div>
+                        <div class="wallet-card-amount" id="taskWalletAmount">0</div>
+                        <div class="wallet-card-sub">Earnings from completed tasks</div>
+                        <button class="btn-primary" id="openWithdrawBtn"><i class="fas fa-arrow-up-from-bracket"></i> Withdraw</button>
+                    </div>
+
+                    <!-- WITHDRAWAL LOCK NOTICE -->
+                    <div id="withdrawLockNotice" class="lock-notice" style="display:none;"></div>
+
+                    <!-- WITHDRAW FORM (hidden until opened) -->
+                    <form id="withdrawForm" class="advertiser-form" style="display:none;">
+                        <label for="withdrawAmount">Amount to withdraw</label>
+                        <input type="number" id="withdrawAmount" min="1" step="1" placeholder="0" required />
+                        <button type="submit" class="btn-primary" id="withdrawSubmitBtn">
+                            <i class="fas fa-paper-plane"></i> Submit Withdrawal Request
+                        </button>
+                        <p id="withdrawMessage" class="form-message"></p>
+                    </form>
+
+                    <!-- PENDING WITHDRAWALS -->
+                    <h3 class="section-title small"><i class="fas fa-clock"></i> Withdrawal Requests</h3>
+                    <div id="withdrawalHistoryList" class="task-list">
+                        <div class="empty-state">No withdrawal requests yet.</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- COMPLETED TASK HISTORY -->
+                    <h3 class="section-title small"><i class="fas fa-check-double"></i> Completed Tasks</h3>
+                    <div id="taskHistoryList" class="task-list">
+                        <div class="empty-state">You haven't completed any tasks yet.</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ============ ADMIN TAB (hidden unless isAdmin) ============ -->
+            <div class="tab-content admin-only" id="admin-content">
+
+                <div class="admin-subtabs-toggle">
+                    <button class="admin-subtab-btn active" data-admin-subtab="settings">Settings</button>
+                    <button class="admin-subtab-btn" data-admin-subtab="post">Post Task</button>
+                    <button class="admin-subtab-btn" data-admin-subtab="manage">Manage</button>
+                    <button class="admin-subtab-btn" data-admin-subtab="withdrawals">Withdrawals</button>
+                </div>
+
+                <!-- SETTINGS -->
+                <div class="admin-subtab-content active" id="admin-settings-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-sliders"></i> Task Pricing</h2>
+                        <p class="section-subtext">Two independent amounts — run a margin between what advertisers pay and what workers earn.</p>
+                        <form id="rewardSettingForm" class="advertiser-form">
+                            <label for="advertiserPriceInput">Advertiser price per person (what advertisers pay)</label>
+                            <input type="number" id="advertiserPriceInput" min="1" step="1" required />
+
+                            <label for="workerRewardInput">Worker payout per completed task (what workers earn)</label>
+                            <input type="number" id="workerRewardInput" min="1" step="1" required />
+
+                            <button type="submit" class="btn-primary" id="rewardSettingSubmit"><i class="fas fa-save"></i> Save Pricing</button>
+                            <p id="rewardSettingMessage" class="form-message"></p>
+                        </form>
+
+                        <div class="divider"></div>
+
+                        <h2 class="section-title"><i class="fas fa-lock"></i> Withdrawal Lock</h2>
+                        <p class="section-subtext">Controls whether users can submit task-wallet withdrawal requests.</p>
+                        <form id="withdrawLockForm" class="advertiser-form">
+                            <label class="admin-checkbox-row">
+                                <input type="checkbox" id="withdrawLockToggle" />
+                                Lock task-wallet withdrawals
+                            </label>
+                            <label for="withdrawLockMessageInput">Message shown to users while locked</label>
+                            <input type="text" id="withdrawLockMessageInput" placeholder="Withdrawals open every Friday" />
+                            <label for="minWithdrawalInput">Minimum withdrawal amount</label>
+                            <input type="number" id="minWithdrawalInput" min="1" step="1" placeholder="0" />
+                            <button type="submit" class="btn-primary" id="withdrawLockSaveBtn"><i class="fas fa-save"></i> Save</button>
+                            <p id="withdrawLockSaveMessage" class="form-message"></p>
+                        </form>
+
+                        <div class="divider"></div>
+
+                        <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Task Approval</h2>
+                        <p class="section-subtext">When on, every new advertiser-posted task waits for your approval in the Manage tab before it goes live. Your own free tasks always go live immediately.</p>
+                        <form id="taskApprovalForm" class="advertiser-form">
+                            <label class="admin-checkbox-row">
+                                <input type="checkbox" id="taskApprovalToggle" />
+                                Require admin approval for new advertiser tasks
+                            </label>
+                            <button type="submit" class="btn-primary" id="taskApprovalSaveBtn"><i class="fas fa-save"></i> Save</button>
+                            <p id="taskApprovalMessage" class="form-message"></p>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- POST ADMIN TASK -->
+                <div class="admin-subtab-content" id="admin-post-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-bullhorn"></i> Post a Task (Free)</h2>
+                        <p class="section-subtext">Tasks you post here don't charge any wallet, and you choose the reward for this specific task.</p>
+                        <form id="adminTaskForm" class="advertiser-form">
+                            <label for="adminTaskTitle">Task title</label>
+                            <input type="text" id="adminTaskTitle" required maxlength="80" />
+
+                            <label for="adminTaskDescription">Description</label>
+                            <textarea id="adminTaskDescription" required maxlength="400" rows="3"></textarea>
+
+                            <label for="adminTaskLink">Task link</label>
+                            <input type="url" id="adminTaskLink" required />
+
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label for="adminTaskReward">Reward per person</label>
+                                    <input type="number" id="adminTaskReward" min="1" step="1" required />
+                                </div>
+                                <div class="form-col">
+                                    <label for="adminTaskSlots">Number of people</label>
+                                    <input type="number" id="adminTaskSlots" min="1" step="1" required />
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary" id="adminTaskSubmit"><i class="fas fa-bullhorn"></i> Post Task (Free)</button>
+                            <p id="adminTaskMessage" class="form-message"></p>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- MANAGE TASKS -->
+                <div class="admin-subtab-content" id="admin-manage-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-list-check"></i> All Tasks</h2>
+                        <div id="adminAllTasksList" class="task-list">
+                            <div class="empty-state">Loading tasks...</div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- WITHDRAWAL REQUESTS -->
+                <div class="admin-subtab-content" id="admin-withdrawals-subcontent">
+                    <section class="tasks-section">
+                        <h2 class="section-title"><i class="fas fa-clock"></i> Pending Withdrawal Requests</h2>
+                        <div id="adminPendingWithdrawalsList" class="task-list">
+                            <div class="empty-state">Loading requests...</div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <h3 class="section-title small"><i class="fas fa-check-double"></i> Recently Reviewed</h3>
+                        <div id="adminReviewedWithdrawalsList" class="task-list">
+                            <div class="empty-state">Nothing reviewed yet.</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="plans.html"><i class="fas fa-box"></i> Plans</a>
+            <a href="tasks.html" class="active"><i class="fas fa-gift"></i> Tasks</a>
+            <a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+    </div>
+    <script src="tasks.js" type="module"></script>
+</body>
+</html>

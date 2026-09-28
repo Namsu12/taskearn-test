@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Referrals - Task Earn</title>
+        <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Grow your Task Earn network by inviting new users, track your referrals, and manage rewards through the platform's referral program.">
+
+<!--SEO instruction-->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="referral.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+    
+</head>
+<body>
+<div class="ref-container">
+
+    <!-- HEADER -->
+    <header class="top-bar">
+        <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h2>Referral Program</h2>
+        <div></div>
+    </header>
+
+    <!-- HOW IT WORKS -->
+    <div class="how-it-works">
+        <h3><i class="fas fa-info-circle"></i> How It Works</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-info">
+                    <strong>Share Your Link</strong>
+                    <p>Share your unique referral link with friends and family</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                <div class="step-info">
+                    <strong>They Register & Deposit</strong>
+                    <p>When they sign up using your link and make a deposit, you earn automatically</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-coins"></i></div>
+                <div class="step-info">
+                    <strong>Earn Commission</strong>
+                    <p>Get credited instantly when their deposit is approved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMISSION LEVELS -->
+    <div class="levels-card">
+        <h3><i class="fas fa-layer-group"></i> Commission Levels</h3>
+        <div class="level-row">
+            <div class="level-badge l1">Level 1</div>
+            <div class="level-info">
+                <strong>Direct Referrals</strong>
+                <p>People you directly invite</p>
+            </div>
+            <div class="level-percent">15%</div>
+        </div>
+        <div class="level-row">
+            <div class="level-badge l2">Level 2</div>
+            <div class="level-info">
+                <strong>Their Referrals</strong>
+                <p>People your referrals invite</p>
+            </div>
+            <div class="level-percent">1%</div>
+        </div>
+        <div class="level-row">
+            <div class="level-badge l3">Level 3</div>
+            <div class="level-info">
+                <strong>3rd Tier</strong>
+                <p>One level deeper</p>
+            </div>
+            <div class="level-percent">1%</div>
+        </div>
+        <div class="example-box">
+            <i class="fas fa-calculator"></i>
+            <p>Example: Your referral deposits <strong>₦10,000</strong> → You earn <strong>₦1,500</strong> instantly</p>
+        </div>
+    </div>
+
+    <!-- YOUR REFERRAL LINK -->
+    <div class="link-card">
+        <h3><i class="fas fa-share-alt"></i> Your Referral Link</h3>
+        <div class="link-box">
+            <span id="referralLink">Loading...</span>
+            <button id="copyBtn" onclick="copyLink()">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+        <div class="share-btns">
+            <button onclick="shareWhatsApp()" class="share-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> Share on WhatsApp
+            </button>
+            <button onclick="shareLink()" class="share-btn general">
+                <i class="fas fa-share"></i> Share
+            </button>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+        <div class="stat-box">
+            <i class="fas fa-users"></i>
+            <span id="totalReferrals">0</span>
+            <p>Total Referrals</p>
+        </div>
+        <div class="stat-box">
+            <i class="fas fa-coins"></i>
+            <span id="totalEarned">₦0</span>
+            <p>Referral Earnings</p>
+        </div>
+    </div>
+
+    <!-- REFERRALS LIST -->
+    <div class="referrals-list-card">
+        <h3><i class="fas fa-list"></i> Your Referrals</h3>
+        <div id="referralsList">
+            <div class="empty-state">
+                <i class="fas fa-user-friends"></i>
+                <p>No referrals yet</p>
+                <span>Share your link to start earning</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="referral.js" type="module"></script>
+</body>
+</html>

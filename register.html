@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Register - Task Earn</title>
+    <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Join Task Earn and create your account to explore investment plans, manage your funds, track your investment activity, and access additional earning opportunities.">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="register.css" />
+<link rel="stylesheet" href="footer.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+
+<!-- Open Graphs -->
+<meta property="og:title" content="Register - Task Earn">
+<meta property="og:description" content="Join Task Earn and create your account to explore investment plans, manage your funds, track your investment activity, and access additional earning opportunities.">
+<meta property="og:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+<meta property="og:url" content="https://taskearn.pages.dev/register.html">
+<meta property="og:type" content="website">
+
+<!-- Twiter(x) Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Register - Task Earn">
+<meta name="twitter:description" content="Join Task Earn and create your account to explore investment plans, manage your funds, track your investment activity, and access additional earning opportunities.">
+<meta name="twitter:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+</head>
+<body>
+
+    <div class="register-card">
+        <!-- Brand -->
+        <div class="brand">
+            <i class="fas fa-microchip"></i>
+            <h1>Task Earn</h1>
+        </div>
+        <div class="subhead">
+            <i class="fas fa-user-plus"></i> New User Registration
+        </div>
+
+        <!-- Form -->
+        <form id="registerForm">
+            <!-- First + Middle Name -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                    <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                    <label for="middleName"><i class="fas fa-user"></i> Middle Name</label>
+                    <input type="text" id="middleName" placeholder="(Optional)" />
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group full-width">
+                <label for="lastName"><i class="fas fa-user-tag"></i> Last Name</label>
+                <input type="text" id="lastName" placeholder="Doe" required />
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group full-width">
+                <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+                <input type="date" id="dob" required />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group full-width">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required />
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group full-width">
+                <label><i class="fas fa-phone-alt"></i> Phone Number</label>
+                <div class="phone-group">
+                    <select id="countryCode">
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+234" selected>🇳🇬 +234</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+55">🇧🇷 +55</option>
+                        <option value="+27">🇿🇦 +27</option>
+                        <option value="+254">🇰🇪 +254</option>
+                        <option value="+233">🇬🇭 +233</option>
+                    </select>
+                    <input type="tel" id="phoneNumber" placeholder="123-456-7890" required />
+                </div>
+            </div>
+
+            <!-- Address 1 + 2 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="address1"><i class="fas fa-home"></i> Address 1</label>
+                    <input type="text" id="address1" placeholder="123 Main St" required />
+                </div>
+                <div class="form-group">
+                    <label for="address2"><i class="fas fa-home"></i> Address 2</label>
+                    <input type="text" id="address2" placeholder="Apt, Suite (Optional)" />
+                </div>
+            </div>
+
+            <!-- City + State -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city"><i class="fas fa-city"></i> City</label>
+                    <input type="text" id="city" placeholder="New York" required />
+                </div>
+                <div class="form-group">
+                    <label for="state"><i class="fas fa-map-pin"></i> State</label>
+                    <input type="text" id="state" placeholder="NY" required />
+                </div>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group full-width">
+                <label for="country"><i class="fas fa-globe-americas"></i> Country</label>
+                <select id="country" required>
+                    <option value="">Select your country</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="India">India</option>
+                    <option value="China">China</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Singapore">Singapore</option>
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required minlength="6" />
+                    <span class="password-hint"><i class="fas fa-info-circle"></i> Min 6 characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword"><i class="fas fa-check-circle"></i> Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••" required />
+                </div>
+            </div>
+
+            <div class="form-group" id="referralGroup">
+                    <label>Referral Code (optional)</label>
+                    <input type="text" id="referralCode" placeholder="Enter referral code if you have one" />
+                    <span class="hint" id="referralHint"></span>
+            </div>
+
+<!-- ADD THIS SCRIPT just before your closing </body> tag in register.html -->
+<!-- It auto-fills the referral code from the URL -->
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get('ref');
+        const input = document.getElementById('referralCode');
+        const hint = document.getElementById('referralHint');
+        if (ref && input) {
+            input.value = ref;
+            input.readOnly = true;
+            input.style.color = '#51cf66';
+            if (hint) hint.textContent = '✅ Referral code applied!';
+        }
+    });
+</script>
+
+
+            <!-- Terms -->
+            <div class="form-group full-width">
+                <div class="terms-check">
+                    <input type="checkbox" id="termsCheck" required />
+                    <label for="termsCheck">
+                        I accept the <a href="terms.html" target="_blank">Terms &amp; Conditions</a> and
+                        <a href="privacy.html" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="btn-register" id="registerBtn">
+                <i class="fas fa-user-check"></i> Register
+            </button>
+        </form>
+
+        <div class="login-row">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+
+        <div id="toastMessage" class="toast-message">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastText">Registration successful!</span>
+        </div>
+    </div>
+
+    <script src="register.js" type="module"></script>
+    <script src="footer.js"></script>
+</body>
+</html>

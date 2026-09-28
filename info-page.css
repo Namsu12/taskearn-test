@@ -1,0 +1,203 @@
+/* ========================================
+   INFO PAGES (Terms / Privacy / Support) - CSS
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b0e1a;
+    color: #e6f1ff;
+    min-height: 100vh;
+}
+
+.info-container {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ---------- TOP BAR ---------- */
+.top-bar {
+    background: #141a26;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid #1e2537;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.back-btn {
+    color: #8892b0;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.top-bar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #94b8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-bar .brand i {
+    font-size: 22px;
+    color: #00d4ff;
+    -webkit-text-fill-color: #00d4ff;
+}
+
+/* ---------- PAGE HEADER ---------- */
+.page-header {
+    padding: 24px 20px 8px;
+}
+
+.page-header h1 {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-header h1 i {
+    color: #00d4ff;
+}
+
+.page-header p {
+    color: #8892b0;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+/* ---------- CONTENT ---------- */
+.info-content {
+    padding: 8px 20px 20px;
+}
+
+.info-content h2 {
+    font-size: 15px;
+    color: #00d4ff;
+    margin: 22px 0 8px;
+}
+
+.info-content h2:first-child {
+    margin-top: 0;
+}
+
+.info-content p {
+    font-size: 13.5px;
+    color: #ccd6f6;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.info-content ul {
+    padding-left: 18px;
+    margin-bottom: 8px;
+}
+
+.info-content li {
+    font-size: 13.5px;
+    color: #ccd6f6;
+    line-height: 1.7;
+}
+
+.placeholder-notice {
+    background: rgba(255, 179, 71, 0.08);
+    border: 1px solid rgba(255, 179, 71, 0.25);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #ffb347;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.placeholder-notice i {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* ---------- FAQ (support page) ---------- */
+.faq-item {
+    background: #141a26;
+    border: 1px solid #1e2537;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #e6f1ff;
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+}
+
+.faq-question i {
+    color: #00d4ff;
+    transition: transform 0.25s;
+}
+
+.faq-item.open .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 16px 14px;
+    font-size: 13px;
+    color: #8892b0;
+    line-height: 1.6;
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+.contact-card {
+    background: #141a26;
+    border: 1px solid #1e2537;
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 20px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #e6f1ff;
+}
+
+.contact-row i {
+    width: 20px;
+    color: #00d4ff;
+    font-size: 16px;
+}
+
+.contact-row span {
+    font-size: 14px;
+}

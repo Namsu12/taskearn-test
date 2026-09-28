@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Profile - Task Earn</title>
+    <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Manage your Task Earn profile, update your account information, review your investment activity, and manage your account settings.">
+
+<!--SEO instruction-->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="profile.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+    
+</head>
+<body>
+
+    <div class="profile-container">
+
+        <!-- ========== TOP BAR ========== -->
+        <header class="top-bar">
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <i class="fas fa-bell" id="notificationBtn"></i>
+                <img src="https://ui-avatars.com/api/?name=Task Earn+User&background=00d4ff&color=fff&size=36" alt="User" />
+            </div>
+        </header>
+
+        <!-- ========== PROFILE HEADER ========== -->
+        <div class="profile-header">
+            <div class="avatar-wrapper">
+                <img src="https://ui-avatars.com/api/?name=Task Earn+User&background=00d4ff&color=fff&size=80" alt="Profile" />
+                <button class="edit-avatar-btn" id="editAvatarBtn">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <h2 id="displayName">Task Earn User</h2>
+            <p id="displayEmail">user@Task Earn.com</p>
+            <span class="member-badge"><i class="fas fa-check-circle"></i> <span id="memberSinceText">Member</span></span>
+        </div>
+
+        <!-- ========== STATS ROW ========== -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <span class="stat-number" id="statTotalInvested">0</span>
+                <span class="stat-label">Total Invested</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statTotalProfit">0.00</span>
+                <span class="stat-label">Total Profit</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statActivePlans">0</span>
+                <span class="stat-label">Active Plans</span>
+            </div>
+        </div>
+
+        <!-- ========== PROFILE DETAILS ========== -->
+        <div class="profile-details">
+            <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+
+            <div class="detail-card">
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-user"></i></div>
+                    <div class="detail-content">
+                        <span class="detail-label">Full Name</span>
+                        <span class="detail-value" id="profileFullName">Task Earn User</span>
+                    </div>
+                    <a class="detail-edit" href="edit-profile.html?field=full_name"><i class="fas fa-pen"></i></a>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="detail-content">
+                        <span class="detail-label">Email Address</span>
+                        <span class="detail-value" id="profileEmail">user@Task Earn.com</span>
+                    </div>
+                    <a class="detail-edit" href="edit-profile.html?field=email"><i class="fas fa-pen"></i></a>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="detail-content">
+                        <span class="detail-label">Date of Birth</span>
+                        <span class="detail-value" id="profileDob">Not set</span>
+                    </div>
+                    <a class="detail-edit" href="edit-profile.html?field=dob"><i class="fas fa-pen"></i></a>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="detail-content">
+                        <span class="detail-label">Phone Number</span>
+                        <span class="detail-value" id="profilePhone">Not set</span>
+                    </div>
+                    <a class="detail-edit" href="edit-profile.html?field=phone"><i class="fas fa-pen"></i></a>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="detail-content">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value" id="profileLocation">Not set</span>
+                    </div>
+                    <a class="detail-edit" href="edit-profile.html?field=location"><i class="fas fa-pen"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ACCOUNT ACTIONS ========== -->
+        <div class="account-actions">
+            <a href="admin.html" class="action-btn admin-link" id="adminPanelLink" style="display:none;">
+                <i class="fas fa-user-shield"></i> Admin Panel
+            </a>
+            <a href="change-password.html" class="action-btn change-password">
+                <i class="fas fa-lock"></i> Change Password
+            </a>
+            <a href="login.html" class="action-btn logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+        <!-- ========== BOTTOM NAV ========== -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="plans.html"><i class="fas fa-box"></i> Plans</a>
+            <a href="tasks.html"><i class="fas fa-gift"></i> Tasks</a>
+            <a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+    </div>
+
+    <script src="profile.js" type="module"></script>
+</body>
+</html>

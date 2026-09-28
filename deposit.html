@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Deposit - Task Earn</title>
+    <!-- Preconnects-->
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+    <link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Descriptions -->
+    <meta name="author" content="TaskEarn">
+    <meta name="description" content="Deposit funds into your Task Earn account to activate your account, access available investment plans, and manage your investment activities.">
+
+    <!--SEO instructions-->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Icons, stylesheets, fonts/libraries-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="deposit.css" />
+
+    <!-- Mainfest -->
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Misc-Theme color -->
+    <meta name="theme-color" content="#0b0e1a">
+</head>
+<body>
+    <div class="deposit-container">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+            <a href="wallet.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <img src="https://ui-avatars.com/api/?name=Ultron+User&background=00d4ff&color=fff&size=36" alt="User" id="userAvatarImg" />
+            </div>
+        </header>
+
+        <!-- PAGE TITLE -->
+        <div class="page-header">
+            <h1><i class="fas fa-coins"></i> Crypto Deposit</h1>
+            <p>Fund your wallet with cryptocurrency</p>
+        </div>
+
+        <!-- BALANCE CARD -->
+        <div class="balance-card">
+            <span class="balance-label"><i class="fas fa-wallet"></i> Your Balance</span>
+            <span class="balance-amount" id="depositBalanceAmount">0.00</span>
+            <span class="balance-sub">Available for investment</span>
+        </div>
+
+        <!-- DEPOSIT FORM -->
+        <div class="deposit-form">
+
+            <!-- Currency Selection -->
+            <div class="form-group">
+                <label><i class="fas fa-coins"></i> Cryptocurrency</label>
+                <div class="currency-selector">
+                    <button class="currency-btn active" data-currency="usdt">
+                        <i class="fas fa-circle" style="color: #26a17b;"></i> USDT
+                    </button>
+                    <button class="currency-btn" data-currency="btc">
+                        <i class="fas fa-circle" style="color: #f7931a;"></i> BTC
+                    </button>
+                    <button class="currency-btn" data-currency="eth">
+                        <i class="fas fa-circle" style="color: #627eea;"></i> ETH
+                    </button>
+                </div>
+            </div>
+
+            <!-- Network Selection (only for USDT) -->
+            <div class="form-group" id="networkGroup">
+                <label><i class="fas fa-network-wired"></i> Network</label>
+                <div class="network-selector">
+                    <button class="network-btn active" data-network="trc20">
+                        <i class="fas fa-bolt"></i> TRC20
+                    </button>
+                    <button class="network-btn" data-network="erc20">
+                        <i class="fas fa-bolt"></i> ERC20
+                    </button>
+                    <button class="network-btn" data-network="bep20">
+                        <i class="fas fa-bolt"></i> BEP20
+                    </button>
+                </div>
+            </div>
+
+            <!-- Address Display -->
+            <div class="address-card">
+                <div class="address-header">
+                    <span><i class="fas fa-qrcode"></i> Deposit Address</span>
+                    <button class="copy-btn" id="copyAddressBtn">
+                        <i class="fas fa-copy"></i> Copy Address
+                    </button>
+                </div>
+                <div class="address-display" id="depositAddress">
+                    TBjSyDvpbGZva8iNgKDpoqGyNyiFVpqw36
+                </div>
+                <div class="address-hint">
+                    <i class="fas fa-info-circle"></i>
+                    Send only the selected coin &amp; network. Wrong network = lost funds.
+                </div>
+                <div class="address-hint warning">
+                    <i class="fas fa-clock"></i>
+                    Confirmations may take 5–15 minutes.
+                </div>
+            </div>
+
+            <!-- Amount Input (Naira) -->
+            <div class="form-group">
+                <label><i class="fas fa-naira-sign"></i> Amount (₦)</label>
+                <div class="amount-input-wrapper">
+                    <span class="currency-symbol">₦</span>
+                    <input type="number" id="amountInput" placeholder="Enter amount" min="0" step="100" inputmode="numeric" />
+                </div>
+                <div class="amount-hint">
+                    <span id="minHint">Min: ₦3,500</span>
+                    <span id="maxHint">Max: ₦200,000</span>
+                </div>
+            </div>
+
+            <!-- LIVE CONVERTER OUTPUT -->
+            <div class="converter-card" id="converterCard">
+                <div class="converter-row">
+                    <span class="converter-label">
+                        <i class="fas fa-exchange-alt"></i> You will send
+                    </span>
+                    <span class="converter-value" id="usdEquivalent">$0.00</span>
+                </div>
+                <div class="converter-row">
+                    <span class="converter-label">
+                        <i class="fas fa-coins"></i> Crypto amount
+                    </span>
+                    <span class="converter-value crypto" id="cryptoEquivalent">0.00 USDT</span>
+                </div>
+                <div class="converter-rate" id="rateDisplay">
+                    Loading rate...
+                </div>
+            </div>
+
+            <!-- Transaction Hash -->
+            <div class="form-group">
+                <label><i class="fas fa-hashtag"></i> Transaction Hash (TXID)</label>
+                <input type="text" id="txidInput" placeholder="Paste TXID after sending" />
+                <div class="txid-hint">
+                    <i class="fas fa-info-circle"></i>
+                    Paste the transaction ID from your wallet after sending the payment.
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="submit-btn" id="submitDepositBtn">
+                <i class="fas fa-check-circle"></i> Submit Deposit
+            </button>
+
+        </div>
+
+        <!-- RECENT DEPOSITS -->
+        <div class="recent-section">
+            <h3><i class="fas fa-history"></i> Recent Deposits</h3>
+            <div id="recentDepositsList">
+                <div class="recent-empty">
+                    <i class="fas fa-inbox"></i>
+                    <p>No deposits yet</p>
+                    <span>Your deposit history will appear here</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+        	<a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+        	<a href="plans.html" class="active"><i class="fas fa-box"></i> Plans</a>
+        	<a href="tasks.html"><i class="fas fa-gift"></i> Tasks</a>
+        	<a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+        	<a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Done!</span>
+    </div>
+
+    <script src="deposit.js" type="module"></script>
+</body>
+</html>

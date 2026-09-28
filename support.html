@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Support - Task Earn</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="support.css" />
+</head>
+<body>
+    <div class="chat-container">
+
+        <!-- HEADER -->
+        <header class="chat-header">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="chat-header-info">
+                <div class="agent-avatar">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div>
+                    <h3>Task Earn Support</h3>
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MESSAGES -->
+        <div class="messages-area" id="messagesArea">
+            <div class="welcome-bubble">
+                <i class="fas fa-robot"></i>
+                <p>👋 Welcome! How can we help you today? Send us a message and our team will reply shortly.</p>
+            </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="chat-input-area">
+            <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off" />
+            <button id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+
+    </div>
+    <script src="support.js" type="module"></script>
+</body>
+</html>

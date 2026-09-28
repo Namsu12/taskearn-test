@@ -1,0 +1,90 @@
+/* ========================================
+   FULL-SCREEN BANNER - CSS
+   ======================================== */
+
+.fullscreen-banner-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 7, 14, 0.85);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.fullscreen-banner-overlay.active {
+    display: flex;
+}
+
+.fullscreen-banner-card {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    max-height: 90dvh;
+    min-height: 220px;
+    background: linear-gradient(160deg, #141a26 0%, #0b0e1a 100%);
+    border: 1px solid #1e2537;
+    border-radius: 22px;
+    padding: 40px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    overflow-y: auto;
+}
+
+.fullscreen-banner-card h2 {
+    color: #00d4ff;
+    font-size: 22px;
+    margin: 0;
+}
+
+.fullscreen-banner-card p {
+    color: #e6f1ff;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+.fullscreen-banner-cta {
+    display: none;
+    margin-top: 8px;
+    padding: 13px 30px;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.fullscreen-banner-cta:active {
+    transform: scale(0.97);
+}
+
+#fullscreenBannerClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #8892b0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+#fullscreenBannerClose:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}

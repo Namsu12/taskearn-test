@@ -1,0 +1,396 @@
+/* ========================================
+   INVESTMENT PLANS - RESPONSIVE CSS
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b0e1a;
+    color: #e6f1ff;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* ---------- TOP BAR ---------- */
+.top-bar {
+    background: #141a26;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e2537;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.top-bar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #94b8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-bar .brand i {
+    font-size: 22px;
+    color: #00d4ff;
+    -webkit-text-fill-color: #00d4ff;
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-actions .balance {
+    color: #8892b0;
+    font-size: 14px;
+}
+
+.top-actions .balance i {
+    color: #00d4ff;
+    margin-right: 4px;
+}
+
+.top-actions img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #00d4ff;
+}
+
+/* ---------- PAGE HEADER ---------- */
+.page-header {
+    padding: 20px 20px 8px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e6f1ff;
+}
+
+.page-header h1 i {
+    color: #00d4ff;
+    margin-right: 10px;
+}
+
+.page-header p {
+    color: #8892b0;
+    font-size: 14px;
+}
+
+/* ---------- PLAN SECTIONS ---------- */
+.plan-section {
+    padding: 16px 20px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #e6f1ff;
+}
+
+.section-title i {
+    color: #00d4ff;
+    margin-right: 8px;
+}
+
+/* ---------- PLANS GRID ---------- */
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+/* ---------- PLAN CARD ---------- */
+.plan-card {
+    background: #141a26;
+    border: 1px solid #1e2537;
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ---------- DISCLAIMER BANNER ---------- */
+.disclaimer-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255, 179, 71, 0.08);
+    border: 1px solid rgba(255, 179, 71, 0.25);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 0 20px 16px;
+}
+
+.disclaimer-banner i {
+    color: #ffb347;
+    font-size: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.disclaimer-banner p {
+    color: #ccd6f6;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.disclaimer-banner strong {
+    color: #ffb347;
+}
+
+/* ---------- RISK BADGE ---------- */
+.risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.risk-badge.low {
+    background: rgba(81, 207, 102, 0.12);
+    color: #51cf66;
+}
+
+.risk-badge.medium {
+    background: rgba(255, 179, 71, 0.12);
+    color: #ffb347;
+}
+
+.risk-badge.high {
+    background: rgba(255, 107, 107, 0.12);
+    color: #ff6b6b;
+}
+
+/* ---------- RETURN SUBTEXT ---------- */
+.plan-return-sub {
+    color: #4a5670;
+    font-size: 11px;
+    margin-top: -8px;
+    margin-bottom: 14px;
+}
+
+.plan-card:hover {
+    border-color: #00d4ff;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.08);
+}
+
+.plan-card.crypto:hover {
+    border-color: #9b59b6;
+    box-shadow: 0 8px 30px rgba(155, 89, 182, 0.1);
+}
+
+/* ---------- BADGE ---------- */
+.plan-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.plan-badge.starter {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+}
+
+.plan-badge.basic {
+    background: rgba(81, 207, 102, 0.15);
+    color: #51cf66;
+}
+
+.plan-badge.growth {
+    background: rgba(255, 179, 71, 0.15);
+    color: #ffb347;
+}
+
+.plan-badge.advanced {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+}
+
+.plan-badge.elite {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+}
+
+/* ---------- PRICE ---------- */
+.plan-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e6f1ff;
+    margin-bottom: 6px;
+}
+
+/* ---------- DURATION ---------- */
+.plan-duration {
+    color: #8892b0;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.plan-duration i {
+    margin-right: 4px;
+}
+
+/* ---------- RETURN ---------- */
+.plan-return {
+    color: #8892b0;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.plan-return strong {
+    color: #51cf66;
+}
+
+/* ---------- BUY BUTTON ---------- */
+.btn-buy {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-buy:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
+}
+
+.plan-card.crypto .btn-buy {
+    background: linear-gradient(135deg, #9b59b6 0%, #6c3483 100%);
+}
+
+.plan-card.crypto .btn-buy:hover {
+    box-shadow: 0 4px 20px rgba(155, 89, 182, 0.3);
+}
+
+/* ---------- BOTTOM NAV ---------- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #141a26;
+    border-top: 1px solid #1e2537;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 12px;
+    z-index: 50;
+}
+
+.bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #8892b0;
+    text-decoration: none;
+    font-size: 10px;
+    transition: color 0.25s ease;
+    padding: 4px 16px;
+}
+
+.bottom-nav a i {
+    font-size: 20px;
+}
+
+.bottom-nav a.active {
+    color: #00d4ff;
+}
+
+.bottom-nav a:hover {
+    color: #e6f1ff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 480px) {
+    .plans-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .plan-card {
+        padding: 14px 12px;
+    }
+
+    .plan-price {
+        font-size: 22px;
+    }
+
+    .plan-badge {
+        font-size: 9px;
+        padding: 3px 10px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+    }
+
+    .top-bar .brand {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-card {
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .plans-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .plans-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .plan-card:hover {
+        transform: none;
+    }
+    .btn-buy:hover {
+        transform: none;
+    }
+}

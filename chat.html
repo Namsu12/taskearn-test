@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Chat with Support - Task Earn</title>
+    <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Chat with the Task Earn support team, get assistance with your account and investments, and receive help with deposits, withdrawals, and other platform services">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://taskearn.pages.dev/chat.html">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="chat.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+
+<!-- Open Graphs -->
+<meta property="og:title" content="Chat with Support - Task Earn">
+<meta property="og:description" content="Chat with the Task Earn support team, get assistance with your account and investments, and receive help with deposits, withdrawals, and other platform services.">
+<meta property="og:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+<meta property="og:url" content="https://taskearn.pages.dev/chat.html">
+<meta property="og:type" content="website">
+
+<!-- Twiter(x) Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chat with Support - Task Earn">
+<meta name="twitter:description" content="Chat with the Task Earn support team, get assistance with your account and investments, and receive help with deposits, withdrawals, and other platform services.">
+<meta name="twitter:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+</head>
+<body>
+
+    <div class="chat-page">
+
+        <!-- ========== TOP BAR ========== -->
+        <header class="chat-top-bar">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="chat-top-info">
+                <span class="chat-top-name"><i class="fas fa-headset"></i> ULTRON Support</span>
+                <span class="chat-top-status" id="chatStatus">Usually replies within a few hours</span>
+            </div>
+        </header>
+
+        <!-- ========== MESSAGES ========== -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-loading">
+                <span class="spinner"></span> Loading conversation...
+            </div>
+        </div>
+
+        <!-- ========== INPUT ========== -->
+        <form class="chat-input-row" id="chatForm">
+            <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off" maxlength="1000" />
+            <button type="submit" id="chatSendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+
+    </div>
+
+    <script src="chat.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Dashboard - Task Earn</title>
+    <!-- Preconnects-->
+        <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+        <link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+        
+        <!-- Descriptions -->
+        <meta name="author" content="TaskEarn">
+        <meta name="description" content="Task Earn — manage your account, track your earnings, and explore investment opportunities through a simple and convenient online platform."> 
+        
+        <!-- Canonical -->
+        <link rel="canonical" href="https://taskearn.pages.dev/dashboard.html">
+        
+        <!-- Icons, stylesheets, fonts/libraries-->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="dashboard.css" />
+        <link rel="stylesheet" href="public-chat.css" />
+        <link rel="stylesheet" href="welcome-banner.css" />
+        <link rel="stylesheet" href="fullscreen-banner.css" />
+        
+        <!-- Mainfest -->
+        <link rel="manifest" href="site.webmanifest">
+        
+        <!-- Misc-Theme color -->
+        <meta name="theme-color" content="#0b0e1a">
+        
+        <!-- Open Graphs -->
+        <meta property="og:title" content="Dashboard - Task Earn">
+        <meta property="og:description" content="Your Task Earn dashboard — track earnings, manage investments, complete tasks, and monitor your account activity">
+        <meta property="og:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+        <meta property="og:url" content="https://taskearn.pages.dev/dashboard.html">
+        <meta property="og:type" content="website">
+        
+        <!-- Twiter(x) Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Dashboard - Task Earn">
+        <meta name="twitter:description" content="Your Task Earn dashboard — track earnings, manage investments, complete tasks, and monitor your account activity">
+        <meta name="twitter:image" content="https://taskearn.pages.dev/android-chrome-512x512.png">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- ========== SIDEBAR ========== -->
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li><a href="plans.html"><i class="fas fa-box"></i> Plans</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li><a href="referral.html"><i class="fas fa-gift"></i> Referrals</a></li>
+                <li><a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+            <a href="#" class="logout" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="main-content">
+
+            <!-- ===== TOP HEADER ===== -->
+            <header class="top-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h2>Dashboard</h2>
+                    <p class="welcome-text" id="userName"></p>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-bell" id="notificationBtn"></i>
+                    <a href="profile.html">
+                        <img src="https://ui-avatars.com/api/?name=Task Earn+User&background=00d4ff&color=fff&size=40" alt="User" id="avatarImg" />
+                    </a>
+                </div>
+            </header>
+
+            <!-- ===== WELCOME BANNER (rotating message stack, admin-editable, no close button) ===== -->
+            <div class="welcome-banner" id="welcomeBanner" style="display:none;">
+                <span class="welcome-banner-text" id="welcomeBannerText"></span>
+            </div>
+
+            <!-- ===== GETTING STARTED (shown only for brand-new accounts) ===== -->
+            <div class="getting-started" id="gettingStarted" style="display:none;">
+                <i class="fas fa-rocket"></i>
+                <div class="getting-started-text">
+                    <strong>Welcome to Task Earn!</strong>
+                    <span>Make your first deposit to start investing.</span>
+                </div>
+                <a href="deposit.html">Deposit →</a>
+            </div>
+            
+            <!-- ===== QUICK STATS ===== -->
+            <div class="quick-stats">
+                <div class="quick-stat">
+                    <i class="fas fa-trophy"></i>
+                    <span>Total ROI</span>
+                    <strong id="statRoi">0%</strong>
+                </div>
+                <div class="quick-stat">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Active Plans</span>
+                    <strong id="statActivePlans">0</strong>
+                </div>
+                <div class="quick-stat">
+                    <i class="fas fa-clock"></i>
+                    <span>Pending Profit</span>
+                    <strong id="statPendingProfit">₦0.00</strong>
+                </div>
+            </div>
+
+            <!-- ===== QUICK ACTIONS ===== -->
+            <div class="quick-actions">
+                <a href="deposit.html" class="quick-action-btn">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Deposit</span>
+                </a>
+                <a href="withdraw.html" class="quick-action-btn">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Withdraw</span>
+                </a>
+                <a href="plans.html" class="quick-action-btn">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Invest</span>
+                </a>
+                <a href="chat.html" class="quick-action-btn" id="supportQuickAction" style="position:relative;">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                    <span id="chatUnreadDot" style="display:none; position:absolute; top:6px; right:10px; width:9px; height:9px; border-radius:50%; background:#ff6b6b;"></span>
+                </a>
+                <a href="referral.html" class="quick-action-btn">
+                    <i class="fas fa-users"></i>
+                    <span>Team</span>
+                </a>
+                <a href="partner.html" class="quick-action-btn">
+                    <i class="fas fa-handshake"></i>
+                    <span>Partner</span>
+                </a>
+                <a href="tasks.html" class="quick-action-btn">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </a>
+                <a href="#" class="quick-action-btn" id="communityChatBtn">
+                    <i class="fas fa-globe"></i>
+                    <span>Community</span>
+                </a>
+            </div>
+
+            <!-- ===== RECHARGE ACTIVITY TICKER ===== -->
+            <div class="recharge-activity-bar" id="rechargeActivityBar">
+                <span class="recharge-activity-text" id="rechargeActivityText"></span>
+            </div>
+
+            <!-- ===== STATS GRID ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon wallet"><i class="fas fa-wallet"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Wallet Balance</span>
+                        <span class="stat-value" id="statWalletBalance">0.00</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon invested"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Invested</span>
+                        <span class="stat-value" id="statTotalInvested">0.00</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon profit"><i class="fas fa-coins"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Profit</span>
+                        <span class="stat-value" id="statTotalProfit">0.00</span>
+                    </div>
+                </div>
+            </div>
+            <!-- DAILY CLAIM -->
+<div class="claim-section" style="display:none;">
+    <p id="claimStatus"></p>
+    <button id="claimBtn" disabled></button>
+</div>
+
+            <!-- ===== INVESTMENTS ===== -->
+            <div class="investments-section">
+                <h3>Your Investments</h3>
+                <div class="investment-grid" id="investmentGrid">
+                    <!-- Populated by dashboard.js. Empty state shown until the Buy Plan feature is wired up. -->
+                </div>
+            </div>
+
+            <!-- ===== RECENT ACTIVITY ===== -->
+            <div class="recent-activity-section">
+                <h3>Recent Activity</h3>
+                <div id="recentActivityList">
+                    <div class="activity-empty">
+                        <i class="fas fa-clock-rotate-left"></i>
+                        <p>No activity yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FAQ ===== -->
+            <div class="faq-section" id="faqSection">
+                <i class="fas fa-question-circle"></i>
+                <span>I have a question</span>
+                <span class="arrow">→</span>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ========== OVERLAY (Mobile) ========== -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ========== COUPON REDEEM (floating button + popup) ========== -->
+    <button type="button" id="couponFabBtn" class="coupon-fab" aria-label="Redeem a coupon">
+        <i class="fas fa-ticket"></i>
+    </button>
+
+    <div class="coupon-modal-overlay" id="couponModalOverlay">
+        <div class="coupon-modal-box">
+            <div class="coupon-modal-header">
+                <span><i class="fas fa-ticket"></i> Redeem a Coupon</span>
+                <button type="button" id="couponModalClose" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="coupon-modal-body">
+                <label for="couponInput">Enter code</label>
+                <input type="text" id="couponInput" maxlength="30" placeholder="e.g. WELCOME50" autocomplete="off" style="text-transform:uppercase;" />
+                <button type="button" id="couponRedeemBtn" class="coupon-redeem-btn">Redeem</button>
+                <p id="couponModalMessage" class="coupon-modal-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== COMMUNITY CHAT (public, everyone) ========== -->
+    <div class="community-chat-overlay" id="communityChatOverlay"></div>
+    <div class="community-chat-panel" id="communityChatPanel">
+        <div class="community-chat-header">
+            <span><i class="fas fa-globe"></i> Community Chat</span>
+            <button type="button" id="communityChatClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="community-chat-messages" id="communityMessages">
+            <div class="chat-loading">
+                <span class="spinner"></span> Loading messages...
+            </div>
+        </div>
+
+        <div class="community-chat-input-row">
+            <input type="file" id="communityImageInput" accept="image/*" hidden />
+            <button type="button" id="communityAttachBtn" aria-label="Send image">
+                <i class="fas fa-image"></i>
+            </button>
+            <input type="text" id="communityTextInput" placeholder="Message the community..." maxlength="500" autocomplete="off" />
+            <button type="button" id="communitySendBtn" aria-label="Send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== FULL-SCREEN BANNER (separate from the top strip banner) ========== -->
+    <div class="fullscreen-banner-overlay" id="fullscreenBannerOverlay">
+        <div class="fullscreen-banner-card">
+            <button type="button" id="fullscreenBannerClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="fullscreenBannerTitle"></h2>
+            <p id="fullscreenBannerMessage"></p>
+            <a href="#" id="fullscreenBannerCta" class="fullscreen-banner-cta" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+    </div>
+
+    <script src="dashboard.js" type="module"></script>
+    <script src="public-chat.js" type="module"></script>
+    <script src="welcome-banner.js" type="module"></script>
+    <script src="fullscreen-banner.js" type="module"></script>
+</body>
+</html>

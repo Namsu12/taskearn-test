@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Partner Rewards - Task Earn</title>
+    <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Invite valid referrals, reach partner milestones, and unlock rewards and bonuses through the Task Earn Partner program.">
+
+<!--SEO instruction-->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="partner.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+    
+</head>
+<body>
+    <div class="partner-container">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+            <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <div class="brand">
+                <i class="fas fa-handshake"></i>
+                <span>Partner Rewards</span>
+            </div>
+            <div class="top-actions">
+                <img src="https://ui-avatars.com/api/?name=User&background=00d4ff&color=fff&size=36" alt="User" id="userAvatarImg" />
+            </div>
+        </header>
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <h1><i class="fas fa-users"></i> Invite &amp; Earn</h1>
+            <p>Invite people to Task Earn. Once they make their first deposit, they count as a valid invite toward these milestone rewards.</p>
+        </div>
+
+        <!-- PROGRESS SUMMARY -->
+        <div class="progress-summary">
+            <div class="progress-summary-label"><i class="fas fa-user-check"></i> Your valid invites</div>
+            <div class="progress-summary-count" id="validCountDisplay">0</div>
+        </div>
+
+        <!-- TIER LIST -->
+        <div id="tierList" class="tier-list">
+            <div class="empty-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                Loading rewards...
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="plans.html"><i class="fas fa-box"></i> Plans</a>
+            <a href="tasks.html"><i class="fas fa-gift"></i> Tasks</a>
+            <a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+    </div>
+    <script src="partner.js" type="module"></script>
+</body>
+</html>

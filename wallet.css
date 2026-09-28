@@ -1,0 +1,318 @@
+/* ========================================
+   WALLET - RESPONSIVE CSS
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b0e1a;
+    color: #e6f1ff;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* ---------- TOP BAR ---------- */
+.top-bar {
+    background: #141a26;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e2537;
+}
+
+.top-bar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #94b8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-bar .brand i {
+    font-size: 22px;
+    color: #00d4ff;
+    -webkit-text-fill-color: #00d4ff;
+}
+
+.top-actions img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #00d4ff;
+}
+
+/* ---------- WALLET BALANCE ---------- */
+.wallet-balance {
+    background: linear-gradient(145deg, #141a26, #1a1f2f);
+    margin: 16px 20px;
+    padding: 28px 24px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #1e2537;
+}
+
+.wallet-balance h2 {
+    font-size: 16px;
+    color: #8892b0;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.wallet-balance h2 i {
+    color: #00d4ff;
+    margin-right: 6px;
+}
+
+.balance-display {
+    margin-bottom: 20px;
+}
+
+.balance-display .label {
+    display: block;
+    color: #8892b0;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.balance-display .amount {
+    font-size: 42px;
+    font-weight: 700;
+    color: #e6f1ff;
+}
+
+.balance-display .amount::before {
+    content: '₦';
+    font-size: 28px;
+    color: #00d4ff;
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-deposit,
+.btn-withdraw {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 180px;
+    text-decoration: none;
+}
+
+.btn-deposit {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 114, 255, 0.3);
+}
+
+.btn-deposit:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 28px rgba(0, 114, 255, 0.5);
+}
+
+.btn-withdraw {
+    background: #1e2537;
+    color: #e6f1ff;
+    border: 1px solid #2a3247;
+}
+
+.btn-withdraw:hover {
+    border-color: #00d4ff;
+    transform: scale(1.03);
+}
+
+/* ---------- TRANSACTION HISTORY ---------- */
+.transaction-section {
+    padding: 0 20px;
+}
+
+.transaction-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e6f1ff;
+    margin-bottom: 12px;
+}
+
+.transaction-section h3 i {
+    color: #00d4ff;
+    margin-right: 8px;
+}
+
+.transaction-empty {
+    background: #141a26;
+    border: 1px solid #1e2537;
+    border-radius: 14px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.transaction-empty i {
+    font-size: 40px;
+    color: #2a3247;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.transaction-empty p {
+    color: #8892b0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.transaction-empty span {
+    color: #4a5670;
+    font-size: 13px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #141a26;
+    border: 1px solid #1e2537;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+}
+
+.transaction-item-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.transaction-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e6f1ff;
+}
+
+.transaction-type i {
+    margin-right: 6px;
+    width: 14px;
+}
+
+.transaction-meta {
+    font-size: 12px;
+    color: #4a5670;
+}
+
+.transaction-amount {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.transaction-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid currentColor;
+    text-transform: capitalize;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #141a26;
+    border-top: 1px solid #1e2537;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 12px;
+    z-index: 50;
+}
+
+.bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #8892b0;
+    text-decoration: none;
+    font-size: 10px;
+    transition: color 0.25s ease;
+    padding: 4px 16px;
+}
+
+.bottom-nav a i {
+    font-size: 20px;
+}
+
+.bottom-nav a.active {
+    color: #00d4ff;
+}
+
+.bottom-nav a:hover {
+    color: #e6f1ff;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 480px) {
+    .wallet-balance {
+        padding: 20px 16px;
+        margin: 12px 16px;
+    }
+
+    .balance-display .amount {
+        font-size: 34px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-deposit,
+    .btn-withdraw {
+        max-width: 100%;
+        width: 100%;
+        padding: 14px;
+    }
+
+    .top-bar .brand {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .wallet-container {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .btn-deposit:hover {
+        transform: none;
+    }
+    .btn-withdraw:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Edit Profile - Task Earn</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="edit-profile.css" />
+</head>
+<body>
+
+    <div class="edit-container">
+
+        <!-- ========== TOP BAR ========== -->
+        <header class="top-bar">
+            <a href="profile.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <img src="https://ui-avatars.com/api/?name=Task Earn+User&background=00d4ff&color=fff&size=36" alt="User" id="userAvatarImg" />
+            </div>
+        </header>
+
+        <!-- ========== PAGE HEADER ========== -->
+        <div class="page-header">
+            <h1><i class="fas fa-user-edit"></i> Edit Profile</h1>
+            <p>Update your personal information</p>
+        </div>
+
+        <!-- ========== FORM ========== -->
+        <form class="edit-form" id="editProfileForm">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                    <input type="text" id="firstName" placeholder="First name" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName"><i class="fas fa-user-tag"></i> Last Name</label>
+                    <input type="text" id="lastName" placeholder="Last name" required />
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required />
+                <div class="field-hint">Changing your email requires your current password below.</div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+                <input type="date" id="dob" />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="phone"><i class="fas fa-phone-alt"></i> Phone Number</label>
+                <input type="tel" id="phone" placeholder="+234 123-456-7890" />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                <input type="text" id="location" placeholder="City, State, Country" />
+            </div>
+
+            <div class="form-group full-width" id="currentPasswordGroup" style="display:none;">
+                <label for="currentPassword"><i class="fas fa-lock"></i> Current Password</label>
+                <input type="password" id="currentPassword" placeholder="Required to change email" />
+                <div class="field-hint">Only needed because you're changing your email address.</div>
+            </div>
+
+            <button type="submit" class="btn-save" id="saveBtn">
+                <i class="fas fa-check-circle"></i> Save Changes
+            </button>
+
+            <a href="profile.html" class="btn-cancel">Cancel</a>
+
+        </form>
+
+        <!-- ========== BOTTOM NAV ========== -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="plans.html"><i class="fas fa-box"></i> Plans</a>
+            <a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+        <!-- ========== TOAST ========== -->
+        <div class="toast-message" id="toastMessage">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastText">Saved!</span>
+        </div>
+
+    </div>
+
+    <script src="edit-profile.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+/* ========================================
+   IN-APP CHAT - CSS
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b0e1a;
+    color: #e6f1ff;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.chat-page {
+    max-width: 480px;
+    margin: 0 auto;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- TOP BAR ---------- */
+.chat-top-bar {
+    background: #141a26;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1e2537;
+    flex-shrink: 0;
+}
+
+.back-btn {
+    color: #8892b0;
+    font-size: 18px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.chat-top-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chat-top-name {
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-top-name i {
+    color: #00d4ff;
+}
+
+.chat-top-status {
+    font-size: 11.5px;
+    color: #8892b0;
+}
+
+/* ---------- MESSAGES ---------- */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-loading, .chat-empty {
+    margin: auto;
+    text-align: center;
+    color: #4a5670;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-empty i {
+    font-size: 30px;
+    color: #1e2537;
+}
+
+.chat-bubble-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 78%;
+}
+
+.chat-bubble-row.from-user {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.chat-bubble-row.from-admin {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.chat-bubble {
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.chat-bubble-row.from-user .chat-bubble {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble-row.from-admin .chat-bubble {
+    background: #1e2537;
+    color: #e6f1ff;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-bubble-time {
+    font-size: 10.5px;
+    color: #4a5670;
+    margin-top: 3px;
+    padding: 0 4px;
+}
+
+/* ---------- INPUT ---------- */
+.chat-input-row {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #141a26;
+    border-top: 1px solid #1e2537;
+    flex-shrink: 0;
+}
+
+.chat-input-row input {
+    flex: 1;
+    background: #1e2537;
+    border: 1px solid #2a3247;
+    border-radius: 22px;
+    padding: 12px 18px;
+    color: #e6f1ff;
+    font-size: 14px;
+    outline: none;
+}
+
+.chat-input-row input:focus {
+    border-color: #00d4ff;
+}
+
+.chat-input-row button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+}
+
+.chat-input-row button:active {
+    transform: scale(0.92);
+}
+
+.chat-input-row button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- SPINNER ---------- */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid #00d4ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

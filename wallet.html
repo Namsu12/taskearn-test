@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Wallet - Task Earn</title>
+
+<!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Manage your Task Earn wallet, view your available balance, monitor deposits and withdrawals, and keep track of your investment funds and transactions.">
+
+<!--SEO instructions-->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="wallet.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+</head>
+<body>
+
+    <div class="wallet-container">
+
+        <!-- ========== TOP BAR ========== -->
+        <header class="top-bar">
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <img src="https://ui-avatars.com/api/?name=Task Earn+User&background=00d4ff&color=fff&size=36" alt="User" id="userAvatarImg" />
+            </div>
+        </header>
+
+        <!-- ========== WALLET BALANCE ========== -->
+        <div class="wallet-balance">
+            <h2><i class="fas fa-wallet"></i> Wallet</h2>
+            <div class="balance-display">
+                <span class="label">Your Balance</span>
+                <span class="amount" id="walletBalanceAmount">0.00</span>
+            </div>
+            <div class="action-buttons">
+                <a href="deposit.html" class="btn-deposit">
+                    <i class="fas fa-plus-circle"></i> Deposit
+                </a>
+                <a href="withdraw.html" class="btn-withdraw">
+                    <i class="fas fa-minus-circle"></i> Withdraw
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== TRANSACTION HISTORY ========== -->
+        <div class="transaction-section">
+            <h3><i class="fas fa-history"></i> Transaction History</h3>
+            <div id="transactionList">
+                <div class="transaction-empty">
+                    <i class="fas fa-receipt"></i>
+                    <p>No transactions yet</p>
+                    <span>Start investing to see your activity here</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== BOTTOM NAV ========== -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a href="plans.html"><i class="fas fa-box"></i> Plans</a>
+            <a href="tasks.html"><i class="fas fa-gift"></i> Tasks</a>
+            <a href="wallet.html" class="active"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </nav>
+
+    </div>
+
+    <script src="wallet.js" type="module"></script>
+</body>
+</html>

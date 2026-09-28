@@ -1,0 +1,16 @@
+{
+  "name":"Task Earn",
+  "short_name":"Task Earn",
+  "description": "Task Earn is an online platform where users can explore and access investment opportunities,available tasks, manage their accounts, and track earnings",
+  "start_url":".",
+  "icons": [
+    {
+      "src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"
+      },
+      {"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"
+      }
+    ],
+    "theme_color":"#0b0e1a",
+    "background_color":"#0b0e1a",
+    "display":"standalone"
+  }

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Admin Panel - Task Earn</title>
+        <!-- Preconnects-->
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+<!-- Descriptions -->
+<meta name="author" content="TaskEarn">
+<meta name="description" content="Secure administrative dashboard for authorized Task Earn administrators to manage users, investments, transactions, tasks, and platform operations.">
+<!--SEO instruction-->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Icons, stylesheets, fonts/libraries-->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="admin.css" />
+
+<!-- Mainfest -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Misc-Theme color -->
+<meta name="theme-color" content="#0b0e1a">
+
+</head>
+<body>
+    <div class="admin-container">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="brand">
+                <i class="fas fa-microchip"></i>
+                <span>Task Earn</span>
+            </div>
+            <div class="top-actions">
+                <span class="admin-badge"><i class="fas fa-user-shield"></i> Admin</span>
+            </div>
+        </header>
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <h1><i class="fas fa-user-shield"></i> Admin Panel</h1>
+            <p>Manage requests, investments, and users</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="admin-stats">
+            <div class="admin-stat">
+                <span class="admin-stat-label">Pending Requests</span>
+                <strong id="statPendingRequests">0</strong>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-label">Active Investments</span>
+                <strong id="statActiveInvestments">0</strong>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-label">Total Users</span>
+                <strong id="statTotalUsers">0</strong>
+            </div>
+        </div>
+
+        <!-- SECTION TABS -->
+        <div class="admin-tabs main-section-tabs">
+            <button class="admin-section active" data-section="requests">
+                <i class="fas fa-clipboard-check"></i>
+                <span class="section-tab-label">Requests</span>
+            </button>
+            <button class="admin-section" data-section="investments">
+                <i class="fas fa-chart-line"></i>
+                <span class="section-tab-label">Investments</span>
+            </button>
+            <button class="admin-section" data-section="users">
+                <i class="fas fa-users"></i>
+                <span class="section-tab-label">Users</span>
+            </button>
+            <button class="admin-section" data-section="partner">
+                <i class="fas fa-handshake"></i>
+                <span class="section-tab-label">Partner Tiers</span>
+            </button>
+            <button class="admin-section" data-section="coupons">
+                <i class="fas fa-ticket"></i>
+                <span class="section-tab-label">Coupons</span>
+            </button>
+            <button class="admin-section" data-section="chats">
+                <i class="fas fa-comments"></i>
+                <span class="section-tab-label">Chats</span>
+                <span class="tab-count" id="unreadChatCount" style="display:none;">0</span>
+            </button>
+            <button class="admin-section" data-section="banner">
+                <i class="fas fa-rectangle-ad"></i>
+                <span class="section-tab-label">Banner</span>
+            </button>
+            <button class="admin-section" data-section="rates">
+  									  <i class="fas fa-dollar-sign"></i>
+  									  <span class="section-tab-label">Rates</span>
+											</button>
+       				 </div>
+
+        <!-- REQUESTS SECTION -->
+        <div id="requestsSection">
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-type="deposits">
+                    <i class="fas fa-arrow-down"></i> Deposits
+                </button>
+                <button class="admin-tab" data-type="withdrawals">
+                    <i class="fas fa-arrow-up"></i> Withdrawals
+                </button>
+            </div>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="pending">
+                    Pending <span class="tab-count" id="pendingCount">0</span>
+                </button>
+                <button class="admin-tab" data-tab="reviewed">Reviewed</button>
+            </div>
+            <div class="deposit-list" id="pendingList">
+                <div class="admin-loading"><span class="spinner"></span> Loading requests...</div>
+            </div>
+            <div class="deposit-list" id="reviewedList" style="display:none;"></div>
+        </div>
+
+        <!-- INVESTMENTS SECTION -->
+        <div id="investmentsSection" style="display:none;">
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-inv-tab="running">
+                    Running <span class="tab-count" id="runningCount">0</span>
+                </button>
+                <button class="admin-tab" data-inv-tab="completed">Completed</button>
+            </div>
+            <div class="deposit-list" id="runningInvestmentsList">
+                <div class="admin-loading"><span class="spinner"></span> Loading investments...</div>
+            </div>
+            <div class="deposit-list" id="completedInvestmentsList" style="display:none;"></div>
+        </div>
+
+        <!-- USERS SECTION -->
+        <div id="usersSection" style="display:none;">
+            <div class="admin-search-row">
+                <input type="text" id="userSearchInput" placeholder="Search by name or email..." />
+            </div>
+
+            <div class="broadcast-box">
+                <label for="broadcastMessageInput">Notify all users</label>
+                <textarea id="broadcastMessageInput" rows="2" placeholder="Message every user will receive..."></textarea>
+                <button id="broadcastSendBtn" class="btn-approve"><i class="fas fa-bullhorn"></i> Send to All Users</button>
+                <p id="broadcastMessage" class="form-message"></p>
+            </div>
+
+            <div class="deposit-list" id="usersList">
+                <div class="admin-loading"><span class="spinner"></span> Loading users...</div>
+            </div>
+        </div>
+
+        <!-- PARTNER TIERS SECTION -->
+        <div id="partnerSection" style="display:none;">
+            <div style="padding:0 20px 20px;">
+                <p class="admin-form-hint" style="margin-bottom:14px;">
+                    A "valid invite" is a direct referral who has made at least one approved deposit.
+                    Users see these tiers on the Partner page and can claim the reward once their
+                    valid-invite count reaches the threshold.
+                </p>
+
+                <form id="addTierForm" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="tierThresholdInput">Invites needed</label>
+                            <input type="number" id="tierThresholdInput" min="1" step="1" required />
+                        </div>
+                        <div class="form-col">
+                            <label for="tierRewardInput">Reward (₦)</label>
+                            <input type="number" id="tierRewardInput" min="1" step="1" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-approve" id="addTierSubmit"><i class="fas fa-plus"></i> Add Tier</button>
+                    <p id="addTierMessage" class="form-message"></p>
+                </form>
+
+                <div class="deposit-list" id="partnerTiersList" style="margin-top:16px;">
+                    <div class="admin-loading"><span class="spinner"></span> Loading tiers...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUPONS SECTION -->
+        <div id="couponsSection" style="display:none;">
+            <div style="padding:0 20px 20px;">
+                <p class="admin-form-hint" style="margin-bottom:14px;">
+                    Users never see these codes in the app — they only work if you share the code
+                    with them yourself (WhatsApp, social media, etc.). Each user can redeem a given
+                    code once; the reward is a random amount within the range you set below.
+                </p>
+
+                <form id="addCouponForm" class="admin-form">
+                    <label for="couponCodeInput">Code</label>
+                    <input type="text" id="couponCodeInput" maxlength="30" placeholder="e.g. WELCOME50" required style="text-transform:uppercase;" />
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="couponMinInput">Min reward (₦)</label>
+                            <input type="number" id="couponMinInput" min="1" step="1" required />
+                        </div>
+                        <div class="form-col">
+                            <label for="couponMaxInput">Max reward (₦)</label>
+                            <input type="number" id="couponMaxInput" min="1" step="1" required />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-approve" id="addCouponSubmit"><i class="fas fa-plus"></i> Create &amp; Activate</button>
+                    <p id="addCouponMessage" class="form-message"></p>
+                </form>
+
+                <div class="deposit-list" id="couponsList" style="margin-top:16px;">
+                    <div class="admin-loading"><span class="spinner"></span> Loading coupons...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHATS SECTION -->
+        <div id="chatsSection" style="display:none;">
+            <div id="chatListView">
+                <div class="deposit-list" id="chatThreadsList">
+                    <div class="admin-loading"><span class="spinner"></span> Loading conversations...</div>
+                </div>
+            </div>
+            <div id="chatConversationView" style="display:none;">
+                <div class="chat-conv-header">
+                    <button id="closeChatConvBtn"><i class="fas fa-arrow-left"></i></button>
+                    <div class="chat-conv-user">
+                        <span id="chatConvName">User</span>
+                        <span id="chatConvEmail">user@example.com</span>
+                    </div>
+                </div>
+                <div class="chat-conv-messages" id="chatConvMessages"></div>
+                <form class="chat-conv-input-row" id="chatConvForm">
+                    <input type="text" id="chatConvInput" placeholder="Reply as Task Earn Support..." autocomplete="off" maxlength="1000" />
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- BANNER SECTION -->
+        <div id="bannerSection" style="display:none;">
+            <div style="padding:0 20px 20px;">
+                <h3 style="color:#e6f1ff; font-size:15px; margin-bottom:10px;">
+                    <i class="fas fa-rectangle-ad"></i> Top Banner
+                </h3>
+                <p class="admin-form-hint" style="margin-bottom:14px;">
+                    Add as many messages as you like — they auto-rotate in the strip under the dashboard header,
+                    sliding from one to the next. No close button on this one; use the toggle to turn it off.
+                </p>
+
+                <div class="form-toggle-row" style="margin-bottom:16px;">
+                    <input type="checkbox" id="bannerEnabledInput" />
+                    <label for="bannerEnabledInput">Show the banner to users</label>
+                </div>
+
+                <form id="addBannerMessageForm" class="admin-form" style="margin-bottom:16px;">
+                    <label for="bannerMessageInput">New message</label>
+                    <textarea id="bannerMessageInput" rows="2" maxlength="150" placeholder="e.g. New plans just dropped 🚀"></textarea>
+                    <button type="submit" class="btn-approve" id="addBannerMessageBtn"><i class="fas fa-plus"></i> Add Message</button>
+                    <p id="bannerFormMessage" class="form-message"></p>
+                </form>
+
+                <div id="bannerMessagesList">
+                    <div class="admin-loading"><span class="spinner"></span> Loading...</div>
+                </div>
+
+                <h3 style="color:#e6f1ff; font-size:15px; margin:26px 0 10px;">
+                    <i class="fas fa-expand"></i> Full-Screen Banner
+                </h3>
+                <p class="admin-form-hint" style="margin-bottom:14px;">
+                    A large popup covering most of the screen right after login, with its own close (×) button.
+                    Independent of the Top Banner above — run either, both, or neither.
+                </p>
+
+                <form id="fullscreenBannerForm" class="admin-form">
+                    <label for="fsBannerTitleInput">Title</label>
+                    <input type="text" id="fsBannerTitleInput" maxlength="80" placeholder="e.g. Welcome to Task Earn!" />
+
+                    <label for="fsBannerMessageInput">Message</label>
+                    <textarea id="fsBannerMessageInput" rows="5" maxlength="800" placeholder="What should users see?"></textarea>
+
+                    <div class="form-toggle-row">
+                        <input type="checkbox" id="fsBannerEnabledInput" />
+                        <label for="fsBannerEnabledInput">Show this full-screen banner to users</label>
+                    </div>
+
+                    <label for="fsButtonTextInput" style="margin-top:18px;">Button text</label>
+                    <input type="text" id="fsButtonTextInput" maxlength="40" placeholder="e.g. Join Our Group" />
+
+                    <label for="fsButtonLinkInput">Button link</label>
+                    <input type="text" id="fsButtonLinkInput" maxlength="300" placeholder="e.g. https://chat.whatsapp.com/..." />
+
+                    <div class="form-toggle-row">
+                        <input type="checkbox" id="fsButtonEnabledInput" />
+                        <label for="fsButtonEnabledInput">Show this button</label>
+                    </div>
+
+                    <button type="submit" class="btn-approve" id="fsBannerSaveBtn"><i class="fas fa-save"></i> Save Full-Screen Banner</button>
+                    <p id="fsBannerFormMessage" class="form-message"></p>
+                </form>
+            </div>
+        </div>
+							
+							
+							<!-- EXCHANGE RATES SECTION -->
+<div id="ratesSection" style="display:none;">
+    <div style="padding:0 20px 20px;">
+        <p class="admin-form-hint" style="margin-bottom:14px;">
+            Set the USD→NGN rate and current crypto prices. These power the live converter on the deposit page.
+            Update them whenever the market shifts so users see accurate amounts.
+        </p>
+
+        <form id="ratesForm" class="admin-form">
+            <label for="rateUsdNgnInput">USD → NGN rate (₦ per $1)</label>
+            <input type="number" id="rateUsdNgnInput" min="1" step="1" required />
+
+            <label for="rateUsdtInput">USDT price (USD per 1 USDT)</label>
+            <input type="number" id="rateUsdtInput" min="0" step="0.0001" required />
+
+            <label for="rateBtcInput">BTC price (USD per 1 BTC)</label>
+            <input type="number" id="rateBtcInput" min="1" step="1" required />
+
+            <label for="rateEthInput">ETH price (USD per 1 ETH)</label>
+            <input type="number" id="rateEthInput" min="1" step="1" required />
+
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="rateMinInput">Min deposit (₦)</label>
+                    <input type="number" id="rateMinInput" min="1" step="1" required />
+                </div>
+                <div class="form-col">
+                    <label for="rateMaxInput">Max deposit (₦)</label>
+                    <input type="number" id="rateMaxInput" min="1" step="1" required />
+                </div>
+            </div>
+
+            <button type="submit" class="btn-approve" id="ratesSaveBtn">
+                <i class="fas fa-save"></i> Save Rates
+            </button>
+            <p id="ratesMessage" class="form-message"></p>
+        </form>
+    </div>
+</div>
+    </div>
+
+    <!-- USER HISTORY MODAL -->
+    <div class="modal-overlay" id="userHistoryModal" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="userHistoryTitle">User</h3>
+                <button id="closeUserHistoryModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="userHistoryBody"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-message" id="toastMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastText">Done!</span>
+    </div>
+    <script src="admin.js" type="module"></script>
+</body>
+</html>
